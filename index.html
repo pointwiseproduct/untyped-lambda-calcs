@@ -1,0 +1,40 @@
+﻿<!DOCTYPE html>
+
+<html lang="ja">
+<head>
+    <meta charset="utf-8" />
+    <title>Untyped λ-Calcs</title>
+    <link rel="stylesheet" href="app.css" type="text/css" />
+    <script src="app.js"></script>
+</head>
+<body>
+    <h1>◇ Untyped λ-Calcs ◇</h1>
+    <ul style="list-style-type: square">
+        <li>完全ベータ簡約です. 最も内側の式から評価されます.</li>
+        <li>よって不動点コンビネーターは停止しません.</li>
+        <li>記号に&quot;=&quot;で式を代入できます.</li>
+    </ul>
+    <form action="#" id="form" name="f">
+        <textarea rows="17" cols="60" id="input" name="t">0 = λf x. x
+1 = succ 0
+2 = succ 1
+3 = succ 2
+succ = λn f x. f (n f x)
+plus = λm n f x. m f (n f x)
+pred = λn f x. n (λg h. h (g f)) (λu. x) (λu. u)
+mult = λm n f. m (n f)
+tru = λx y. x
+fls = λx y. y
+∧ = λp q. p q fls
+∨ = λp q. p tru q
+￢ = λp. p fls tru
+if = λp x y. p x y
+iszero = λn. n (λx. fls) tru
+
+succ 2
+</textarea><br/>
+        <p id="result">result:</p>
+        <input type="button" value="Evaluation (Ctrl + Enter)" onclick="calc();" />
+</form>
+</body>
+</html>
